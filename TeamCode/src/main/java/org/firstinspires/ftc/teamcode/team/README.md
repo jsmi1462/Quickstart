@@ -11,8 +11,9 @@ Mentors set up `pedro/Constants.java` and `team/LimelightHelper.java`. Students 
 
 ## Coordinate frame
 
-Origin at field center, inches, heading in degrees (in `Poses`). This is the Limelight's frame,
-so the only conversion is meters to inches inside `LimelightHelper`.
+Origin at the field corner, inches, heading in degrees (in `Poses`). This is the Pedro
+Visualizer's frame, so students copy its numbers directly. The Limelight reports from the field
+center in meters, so `LimelightHelper` converts (meters to inches, then +72 in on x and y).
 
 ## First-time setup (mentor)
 

@@ -69,6 +69,17 @@ if a mentor does it.
 
 See `team/README.md` for what each file is.
 
+### Draw your path first
+
+Open https://visualizer.pedropathing.com and drag points to lay out your route. It shows the same
+field and the same coordinates the robot uses, so what you see is what the code gets.
+
+1. Click the `</>` button, then **Java Code**.
+2. Set **Export Mode** to **Coordinates Only** and copy the numbers.
+3. Put them in `Poses.java` as named spots. If you are on the other alliance, tick **Mirror Horizontally**.
+
+The Visualizer measures from the bottom-left corner of the field, in inches. So do we.
+
 ## 6. When something goes wrong
 
 - **Red error text in the build.** Read the first error, not the last. It names a file and line number.

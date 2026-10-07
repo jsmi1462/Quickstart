@@ -13,8 +13,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
  * Wraps the Limelight 3A so students only ever call relocalize().
  *
  * Uses MegaTag2: we tell the Limelight which way the robot is facing (from odometry) and it
- * returns an AprilTag-based field position. Its field frame (origin at field center, meters)
- * is the same frame as Poses, so the only conversion is meters to inches.
+ * returns an AprilTag-based field position. The Limelight reports in meters with the origin at
+ * the field CENTER. Poses and the Pedro Visualizer use inches with the origin at the field
+ * CORNER, so this class converts: meters to inches, then shifts by half the field (72 in).
  *
  * SETUP (mentor, once): in the Limelight web UI, load the AprilTag pipeline for the current
  * game's field map, and set the camera position on the robot. In the Robot Configuration, name
@@ -26,6 +27,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 public class LimelightHelper {
     /** Ignore results older than this many milliseconds. */
     public static double MAX_STALENESS_MS = 100;
+
+    /** Half the field width in inches. Moves the origin from field center to field corner. */
+    private static final double FIELD_HALF_IN = 72;
 
     private final Limelight3A limelight;
 
@@ -55,8 +59,8 @@ public class LimelightHelper {
         if (botpose == null) {
             return null;
         }
-        double xInches = botpose.getPosition().toUnit(DistanceUnit.INCH).x;
-        double yInches = botpose.getPosition().toUnit(DistanceUnit.INCH).y;
+        double xInches = botpose.getPosition().toUnit(DistanceUnit.INCH).x + FIELD_HALF_IN;
+        double yInches = botpose.getPosition().toUnit(DistanceUnit.INCH).y + FIELD_HALF_IN;
         return new Pose(xInches, yInches, headingRadians);
     }
 
