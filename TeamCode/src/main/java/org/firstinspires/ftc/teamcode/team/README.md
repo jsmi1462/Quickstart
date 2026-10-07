@@ -1,11 +1,11 @@
 # Team starter code
 
-Mentors set up `pedro/Constants.java` and `team/LimelightHelper.java`. Students write the rest.
+Students tune the robot and write the autonomous. `pedro/Constants.java` holds your tuned numbers.
 
 | File | Who | What it is |
 |---|---|---|
-| `pedro/Constants.java` | mentor, once per robot | Hardware names and tuned numbers. `TUNED` must be `true` before anything runs. |
-| `team/LimelightHelper.java` | mentor | Wraps the Limelight. Students call `relocalize(follower)`. |
+| `pedro/Constants.java` | students, after each tuning run | Hardware names and tuned numbers. `TUNED` must be `true` before anything runs. |
+| `team/LimelightHelper.java` | provided | Wraps the Limelight. Students call `relocalize(follower)`. |
 | `team/Poses.java` | students | Named field spots. Two examples to start. |
 | `team/TemplateAuto.java` | students | State machine with one worked state. Students write the rest. |
 
@@ -15,7 +15,7 @@ Origin at the field corner, inches, heading in degrees (in `Poses`). This is the
 Visualizer's frame, so students copy its numbers directly. The Limelight reports from the field
 center in meters, so `LimelightHelper` converts (meters to inches, then +72 in on x and y).
 
-## First-time setup (mentor)
+## First-time setup (students)
 
 1. Name the devices in the Robot Configuration: `pinpoint`, `limelight`, and the four drive motors.
 2. Run the Tuning OpMode. Paste each tuner's output over the matching block in `Constants.java`.

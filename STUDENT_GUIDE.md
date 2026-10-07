@@ -64,8 +64,8 @@ If the Hub is missing from the device list, plug it in with USB-C once, then try
 ## 5. Where your work goes
 
 Everything you write is in `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/team/`.
-Do not edit anything in the `pedro` folder. That holds the robot's tuned numbers, and it only works
-if a mentor does it.
+In the `pedro` folder, the only file you edit is `Constants.java`. That is where your tuned numbers
+go (see Tuning below). Leave `Tuning.java` and the `procedures` folder alone.
 
 See `team/README.md` for what each file is.
 
@@ -79,6 +79,20 @@ field and the same coordinates the robot uses, so what you see is what the code 
 3. Put them in `Poses.java` as named spots. If you are on the other alliance, tick **Mirror Horizontally**.
 
 The Visualizer measures from the bottom-left corner of the field, in inches. So do we.
+
+## Tuning (this is yours)
+
+Tuning the robot is your job, and the robot will not follow paths well until you do it.
+
+1. Connect your computer to the Control Hub's Wi-Fi. Your internet is off while you are on it, so
+   `git pull` and `git push` will not work until you switch back.
+2. Open http://192.168.43.1:10158 in a browser. You will see the tuners: Mecanum, Pinpoint,
+   Foresight and Tests. Work through them in that order.
+3. Each tuner ends with a block of code. Paste it over the matching block in `Constants.java`.
+4. Set `TUNED = true` in `Constants.java` only after you have pasted all of them.
+5. Run Tests to check that the robot really drives where you tell it to.
+
+You will do this again whenever the robot changes: new wheels, a moved odometry pod, a lot of weight added.
 
 ## 6. When something goes wrong
 
