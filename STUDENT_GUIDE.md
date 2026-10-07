@@ -29,11 +29,14 @@ You can check which branch you are on with `git branch`. The one with the star i
 
 ## 3. The daily loop
 
-Start of every session, get everyone else's changes:
+Start of every session, bring the team's latest changes from `rookie-starter` into your branch:
 
 ```
-git pull
+git pull origin rookie-starter
 ```
+
+Plain `git pull` is not enough. On your own branch it only checks your own branch, so you would never
+see updates from the team. Commit your work first (see below) so the pull has nothing to trip over.
 
 Work, then save a snapshot of your work. Do this whenever something works, not just at the end:
 
@@ -97,7 +100,7 @@ You will do this again whenever the robot changes: new wheels, a moved odometry 
 ## 6. When something goes wrong
 
 - **Red error text in the build.** Read the first error, not the last. It names a file and line number.
-- **`git pull` says there is a conflict.** Stop. Do not try to fix it. Get a mentor.
+- **`git pull origin rookie-starter` says there is a conflict.** Stop. Do not try to fix it. Get a mentor.
 - **You changed something and it got worse.** `git status` shows what changed. `git restore <file>`
   throws away your edits to that file and goes back to your last commit. This cannot be undone.
 - **The robot does something unexpected.** Hit STOP on the Driver Station first. Then look at the code.
