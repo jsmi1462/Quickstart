@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.team;
 
+import static com.pedropathing.api.Paths.line;
+
 import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,12 +10,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.pedro.Constants;
 
 /**
- * Template autonomous written as a state machine. Copy a case, change the route or the action.
+ * An autonomous written as a state machine. State 0 is a finished example. The rest is yours.
  *
- * Pattern for every step:
- *   - "drive" case: start a route once (the `entering` flag), then wait until the follower is done.
- *   - "action" case: run a mechanism, wait for a timer, then move on.
- * The follower must be updated every loop. That is the follower.update() at the top.
+ * Questions to answer before you write state 1:
+ *   - What has to be true before the robot is allowed to move on from state 0?
+ *   - Why does follower.update() sit at the top of the loop, outside the switch?
+ *   - What would happen if we called follower.follow(...) every loop instead of once?
+ *     (That is the job of the `entering` flag.)
+ *   - Which states move the robot, and which ones just wait for a mechanism?
  */
 @Autonomous(name = "Template Auto", group = "Team")
 public class TemplateAuto extends LinearOpMode {
@@ -37,8 +41,6 @@ public class TemplateAuto extends LinearOpMode {
         limelight = new LimelightHelper(hardwareMap);
 
         follower.setPose(Poses.START);
-        telemetry.addLine("Ready. Robot must be placed on Poses.START.");
-        telemetry.update();
 
         waitForStart();
         timer.reset();
@@ -47,70 +49,22 @@ public class TemplateAuto extends LinearOpMode {
             follower.update();
 
             switch (state) {
-                case 0: // drive to the scoring spot
+                case 0: // EXAMPLE: drive from START to SCORE
                     if (entering) {
-                        follower.follow(Routes.startToScore());
+                        follower.follow(line(Poses.START, Poses.SCORE).linear(Poses.START, Poses.SCORE));
                         entering = false;
                     }
                     if (!follower.isBusy()) {
-                        limelight.relocalize(follower); // fix any odometry drift while stopped
+                        limelight.relocalize(follower); // fix odometry drift while stopped
                         next();
                     }
                     break;
 
-                case 1: // score (replace the timer with your mechanism)
-                    // TODO: run your scoring mechanism here
-                    if (timer.seconds() > 1.0) {
-                        next();
-                    }
+                case 1:
+                    // TODO: your next step
                     break;
 
-                case 2: // drive to pickup
-                    if (entering) {
-                        follower.follow(Routes.scoreToPickup());
-                        entering = false;
-                    }
-                    if (!follower.isBusy()) {
-                        next();
-                    }
-                    break;
-
-                case 3: // pick up (replace the timer with your mechanism)
-                    // TODO: run your intake mechanism here
-                    if (timer.seconds() > 1.0) {
-                        next();
-                    }
-                    break;
-
-                case 4: // back to score
-                    if (entering) {
-                        follower.follow(Routes.pickupToScore());
-                        entering = false;
-                    }
-                    if (!follower.isBusy()) {
-                        limelight.relocalize(follower);
-                        next();
-                    }
-                    break;
-
-                case 5: // score again
-                    // TODO: run your scoring mechanism here
-                    if (timer.seconds() > 1.0) {
-                        next();
-                    }
-                    break;
-
-                case 6: // park
-                    if (entering) {
-                        follower.follow(Routes.scoreToPark());
-                        entering = false;
-                    }
-                    if (!follower.isBusy()) {
-                        next();
-                    }
-                    break;
-
-                default: // done
+                default:
                     break;
             }
 

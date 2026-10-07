@@ -1,21 +1,18 @@
 # Team starter code
 
-Students work in `team/`. Mentors work in `pedro/Constants.java`.
+Mentors set up `pedro/Constants.java` and `team/LimelightHelper.java`. Students write the rest.
 
-| File | Who edits it | What it is |
+| File | Who | What it is |
 |---|---|---|
 | `pedro/Constants.java` | mentor, once per robot | Hardware names and tuned numbers. `TUNED` must be `true` before anything runs. |
-| `team/Poses.java` | students | Named field spots. Numbers only. |
-| `team/Routes.java` | students | One line per leg of the auto. |
-| `team/TemplateAuto.java` | students | State machine. Copy a case, change the route. |
-| `team/TeleOpMain.java` | students | Driving, pose readout, mechanism controls. |
-| `team/LimelightHelper.java` | nobody | Wraps the Limelight. Call `relocalize(follower)`. |
+| `team/LimelightHelper.java` | mentor | Wraps the Limelight. Students call `relocalize(follower)`. |
+| `team/Poses.java` | students | Named field spots. Two examples to start. |
+| `team/TemplateAuto.java` | students | State machine with one worked state. Students write the rest. |
 
 ## Coordinate frame
 
-One frame everywhere: origin at field center, inches, heading in degrees (in `Poses`).
-This is the Limelight's frame, so there is no conversion step except meters to inches inside
-`LimelightHelper`.
+Origin at field center, inches, heading in degrees (in `Poses`). This is the Limelight's frame,
+so the only conversion is meters to inches inside `LimelightHelper`.
 
 ## First-time setup (mentor)
 
@@ -23,10 +20,9 @@ This is the Limelight's frame, so there is no conversion step except meters to i
 2. Run the Tuning OpMode. Paste each tuner's output over the matching block in `Constants.java`.
    Set `TUNED = true`.
 3. Limelight web UI: load the AprilTag pipeline for the current game and set the camera position.
-4. Check the frame once: place the robot at a known pose, hold A in `TeleOpMain`, and confirm the
-   telemetry pose matches where it is. If x and y look swapped or mirrored, the heading frame
-   needs an offset in `LimelightHelper`.
-5. Drive to each spot, read the pose off the telemetry, and type it into `Poses.java`.
+4. Check the frame once: place the robot at a known pose, call `relocalize` and compare the
+   telemetry pose with where the robot really is. If x and y look swapped or mirrored, the heading
+   frame needs an offset in `LimelightHelper`.
 
 ## Before each competition
 
