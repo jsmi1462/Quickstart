@@ -12,6 +12,14 @@ import org.firstinspires.ftc.teamcode.pedro.Constants;
 /**
  * An autonomous written as a state machine. State 0 is a finished example. The rest is yours.
  *
+ * How to read this file (new to Java? start here):
+ *   - Anything after // or between slash-star blocks like this one is a comment. The robot ignores it.
+ *   - Every instruction ends with a semicolon ;   Curly braces { } group instructions together.
+ *   - Each "case 0:", "case 1:" is one state. The robot runs only the state it is currently in.
+ *     "break;" ends a state. Without it the robot falls into the next one.
+ *   - A name shown in red means Android Studio does not know it yet. Click it, press Alt+Enter
+ *     (Option+Enter on Mac), and choose Import class.
+ *
  * Questions to answer before you write state 1:
  *   - What has to be true before the robot is allowed to move on from state 0?
  *   - Why does follower.update() sit at the top of the loop, outside the switch?
